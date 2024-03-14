@@ -1,23 +1,32 @@
-﻿namespace Task1_Assignment;
-
-class Program
+﻿class Program
 {
     static void Main(string[] args)
     {
-        string status = "Processing";
+        Console.WriteLine("Enter the weight: ");
+        float parcelWeights = float.Parse(Console.ReadLine());// Example weights for parcels
 
-        if(status == "Cancelled")
+        
+        string category = CategorizeParcel(parcelWeights);
+        Console.WriteLine("A parcel weighing "+parcelWeights+"g is categorized as "+category);
+    }
+
+    static string CategorizeParcel(float weight)
+    {
+        string category = "";
+
+        switch (weight)
         {
-            Console.WriteLine("The order is Cancelled");
+            case float n when (n < 500.0):
+                category = "Light";
+                break;
+            case float n when (n >= 500.0 && n < 900.0):
+                category = "Medium";
+                break;
+            case float n when (n>=900.0):
+                category = "Heavy";
+                break;
         }
-        else if(status == "Processing")
-        {
-            Console.WriteLine("The order is under processing"); ;
-        }
-        else if(status == "Delivered")
-        {
-            Console.WriteLine("The order is Delivered");
-        }
+
+        return category;
     }
 }
-
